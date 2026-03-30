@@ -1,6 +1,6 @@
 {
   "name": "@zydro/react-mosaic-component",
-  "version": "6.1.1",
+  "version": "6.1.2",
   "description": "A React Tiling Window Manager",
   "license": "Apache-2.0",
   "main": "lib/index.js",
@@ -9,9 +9,8 @@
   "typings": "lib/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/nomcopter/react-mosaic.git"
+    "url": "https://github.com/zydro-marine-oss/react-mosaic.git"
   },
-  "funding": "https://github.com/nomcopter/react-mosaic?sponsor=1",
   "keywords": [
     "ui",
     "react",
