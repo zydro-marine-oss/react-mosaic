@@ -22,6 +22,10 @@ export {
   MosaicWithoutDragDropContext,
 } from './Mosaic';
 export {
+  type MosaicDragItem,
+  type MosaicDropData,
+} from './internalTypes';
+export {
   type MosaicNode,
   type MosaicSplitNode,
   type MosaicTabsNode,
@@ -71,6 +75,7 @@ export {
   isSplitNode,
   getParentNode,
   getParentPath,
+  normalizeMosaicTree,
 } from './util/mosaicUtilities';
 export { MosaicWindow, type MosaicWindowProps } from './MosaicWindow';
 export { MosaicTabs, type MosaicTabsProps } from './MosaicTabs';

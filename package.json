@@ -1,5 +1,5 @@
 {
-  "name": "react-mosaic-component",
+  "name": "@zydro-marine/react-mosaic-component",
   "version": "0.0.1",
   "description": "A React Tiling Window Manager",
   "license": "Apache-2.0",

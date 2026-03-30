@@ -226,6 +226,7 @@ export const MosaicTabs = <T extends MosaicKey>({
       const hideTimer = defer(() => mosaicActions.hide(path));
       return {
         mosaicId,
+        sourcePath: path,
         hideTimer,
       };
     },
@@ -236,6 +237,9 @@ export const MosaicTabs = <T extends MosaicKey>({
       const ownPath = path;
       const dropResult: MosaicDropData = (monitor.getDropResult() ||
         {}) as MosaicDropData;
+      if (monitor.didDrop() && dropResult.handledOutsideMosaic) {
+        return;
+      }
       const { position, path: destinationPath } = dropResult;
 
       // A drop is successful if we have a destination path

@@ -16,10 +16,21 @@ export interface MosaicDropData {
   path?: MosaicPath;
   position?: MosaicDropTargetPosition;
   tabReorderIndex?: number; // For tab reordering within the same container
+  /**
+   * When true, an application drop target (outside the mosaic tree) handled the drop
+   * and applied tree updates itself. Drag sources must not call `show()` / reset the hide.
+   * Return this from `drop()` only after mutations are applied.
+   */
+  handledOutsideMosaic?: boolean;
 }
 
 export interface MosaicDragItem {
   mosaicId: string;
+  /**
+   * Path of the node hidden when the drag started — same path passed to `hide()`.
+   * Lets external drop targets (e.g. a toolbar) know what to extract from the layout.
+   */
+  sourcePath: MosaicPath;
   isTab?: boolean;
   tabIndex?: number;
   tabKey?: string | number;

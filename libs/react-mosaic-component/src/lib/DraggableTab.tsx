@@ -41,6 +41,7 @@ export const DraggableTab = <T extends MosaicKey>({
     
       return {
         mosaicId,
+        sourcePath: tabPath,
         // Add additional properties for tab reordering
         isTab: true,
         tabIndex,
@@ -51,6 +52,9 @@ export const DraggableTab = <T extends MosaicKey>({
     end: (_, monitor: DragSourceMonitor) => {
       const dropResult = monitor.getDropResult<MosaicDropData>();
       const didDrop = monitor.didDrop();
+      if (didDrop && dropResult?.handledOutsideMosaic) {
+        return;
+      }
 
       const ownPath = tabPath;
       const tabReorderIndex = dropResult?.tabReorderIndex;

@@ -467,6 +467,7 @@ function ConnectedInternalMosaicWindow<T extends MosaicKey = string>(
       const hideTimer = defer(() => mosaicActions.hide(props.path));
       return {
         mosaicId,
+        sourcePath: props.path,
         hideTimer,
       };
     },
@@ -477,6 +478,12 @@ function ConnectedInternalMosaicWindow<T extends MosaicKey = string>(
       const ownPath = props.path;
       const dropResult: MosaicDropData = (monitor.getDropResult() ||
         {}) as MosaicDropData;
+      if (monitor.didDrop() && dropResult.handledOutsideMosaic) {
+        if (props.onDragEnd) {
+          props.onDragEnd('drop');
+        }
+        return;
+      }
       const { position, path: destinationPath } = dropResult;
 
       // A drop is successful if we have a destination path
