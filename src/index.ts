@@ -21,6 +21,7 @@ export {
   MosaicControlledProps,
   MosaicWithoutDragDropContext,
 } from './Mosaic';
+export { type MosaicDragItem, type MosaicDropData } from './internalTypes';
 export {
   MosaicNode,
   MosaicDragType,

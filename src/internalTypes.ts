@@ -11,9 +11,11 @@ export const MosaicDropTargetPosition = {
 export interface MosaicDropData {
   path?: MosaicPath;
   position?: MosaicDropTargetPosition;
+  handledOutsideMosaic?: boolean;
 }
 
 export interface MosaicDragItem {
   mosaicId: string;
-  hideTimer: number;
+  hideTimer?: number;
+  sourcePath?: MosaicPath;
 }

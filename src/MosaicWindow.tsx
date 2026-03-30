@@ -270,16 +270,23 @@ function ConnectedInternalMosaicWindow<T extends MosaicKey = string>(props: Inte
       const hideTimer = defer(() => mosaicActions.hide(props.path));
       return {
         mosaicId,
+        sourcePath: props.path,
         hideTimer,
       };
     },
     end: (item, monitor) => {
-      const { hideTimer } = item;
-      // If the hide call hasn't happened yet, cancel it
-      window.clearTimeout(hideTimer);
+      if (item.hideTimer != null) {
+        window.clearTimeout(item.hideTimer);
+      }
 
       const ownPath = props.path;
       const dropResult: MosaicDropData = (monitor.getDropResult() || {}) as MosaicDropData;
+      if (monitor.didDrop() && dropResult.handledOutsideMosaic) {
+        if (props.onDragEnd) {
+          props.onDragEnd('drop');
+        }
+        return;
+      }
       const { position, path: destinationPath } = dropResult;
       if (position != null && destinationPath != null && !isEqual(destinationPath, ownPath)) {
         mosaicActions.updateTree(createDragToUpdates(mosaicActions.getRoot()!, ownPath, destinationPath, position));
